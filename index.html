@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset = "UTF-8">
-      <title>Robot Tracking</title>
-      <link rel = "stylesheet"
-         href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
 
-      <style type = "text/css">
-         #contact-list {
-            height: 150px;
-            overflow-y: auto;
-         }
-      </style>
-   </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Robot Tracking</title>
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
 
-   <body>
-      <div class = "container">
+  <style type="text/css">
+    #contact-list {
+      height: 150px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
 
-         <div id = "location-list">
-            <table class = "table-striped" id = "location-table">
-              <thead>
-               <tr>
-                  <th class = "col-xs-4">X-Pos</th>
-                  <th class = "col-xs-6">Y-Pos</th>
-               </tr>
-             </thead>
-             <tbody>
+<body>
+  <div class="container">
+    <div id="location-list">
+      <table class="table-striped" id="location-table">
+        <thead>
+          <tr>
+            <th class="col-xs-4">X-Pos</th>
+            <th class="col-xs-6">Y-Pos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--data goes here-->
+        </tbody>
+      </table>
+    </div>
 
-             </tbody>
-            </table>
-         </div>
+    <script src="./view.js"></script>
+  </div>
+</body>
 
-         <script src = "./view.js" ></script>
-      </div>
-   </body>
 </html>

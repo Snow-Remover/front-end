@@ -2,7 +2,7 @@ let $ = require('jquery')
 let fs = require('fs')
 let filename = 'locations.csv'
 
-fs.watch('locations.csv', function (event, filename) {
+fs.watch('locations.csv', function(event, filename) {
   if (event == 'change') {
     clearEntries()
     loadAndDisplayContacts()
@@ -10,10 +10,10 @@ fs.watch('locations.csv', function (event, filename) {
 });
 
 function addEntry(posx, posy) {
-   if(posx && posy) {
-      let updateString = '<tr><td>'+ posx +'</td><td>' + posy +'</td></tr>'
-      $('#location-table tbody').append(updateString)
-   }
+  if (posx && posy) {
+    let updateString = '<tr><td>' + posx + '</td><td>' + posy + '</td></tr>'
+    $('#location-table tbody').append(updateString)
+  }
 }
 
 function clearEntries() {
@@ -22,22 +22,22 @@ function clearEntries() {
 
 function loadAndDisplayContacts() {
 
-   //Check if file exists
-   if(fs.existsSync(filename)) {
-      let data = fs.readFileSync(filename, 'utf8').split('\n')
+  //Check if file exists
+  if (fs.existsSync(filename)) {
+    let data = fs.readFileSync(filename, 'utf8').split('\n')
 
-      data.forEach((location, index) => {
-         let [ posx, posy ] = location.split(',')
-         addEntry(posx, posy)
-      })
+    data.forEach((location, index) => {
+      let [posx, posy] = location.split(',')
+      addEntry(posx, posy)
+    })
 
-   } else {
-      console.log("File Doesn\'t Exist. Creating new file.")
-      fs.writeFile(filename, '', (err) => {
-         if(err)
-            console.log(err)
-      })
-   }
+  } else {
+    console.log("File Doesn\'t Exist. Creating new file.")
+    fs.writeFile(filename, '', (err) => {
+      if (err)
+        console.log(err)
+    })
+  }
 }
 
 loadAndDisplayContacts()
