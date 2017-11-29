@@ -2,11 +2,12 @@ let $ = require('jquery')
 let fs = require('fs')
 let filename = 'locations.csv'
 
-$('#refresh').on('click', () => {
-   //clear table
-   clearEntries()
-   loadAndDisplayContacts()
-})
+fs.watch('locations.csv', function (event, filename) {
+  if (event == 'change') {
+    clearEntries()
+    loadAndDisplayContacts()
+  }
+});
 
 function addEntry(posx, posy) {
    if(posx && posy) {
