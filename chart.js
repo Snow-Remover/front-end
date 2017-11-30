@@ -35,6 +35,8 @@ var svg = d3.select("#chart").append("svg")
 
 var realwidth = 2;
 var realheight = 1;
+var xratio = width / realwidth;
+var yratio = height / realheight;
 
 svg.append('circle')
   .attr("stroke", "red")
@@ -79,17 +81,33 @@ $('#chart').click(function(e) { //Default mouse Position
       .attr("id", "moveto")
       .attr("stroke", "red")
       .attr("fill", "red")
-      .attr("r", 4)
+      .attr("r", 20)
       .attr("cx", e.pageX)
       .attr("cy", e.pageY);
 
     // console.log((e.pageX/xratio).toPrecision(3));
     console.log(e.pageX + ", " + e.pageY);
-    console.log(e.pageX.map(50, 50 + width, 0, realwidth) + ", " + e.pageY.map(50, 50 + height, realheight, 0));
+    // console.log(e.pageX.map(50, 50 + width, 0, realwidth).toPrecision(3) + ", " + e.pageY.map(50, 50 + height, realheight, 0).toPrecision(3));
+
+    let x = e.pageX.map(50, 50 + width, 0, realwidth);
+    let y = e.pageY.map(50, 50 + height, realheight, 0);
+    if (x < 1) {
+      x = x.toPrecision(2);
+    } else {
+      x = x.toPrecision(3);
+    }
+
+    if (y < 1) {
+      y = y.toPrecision(2);
+    } else {
+      y = y.toPrecision(3);
+    }
+
+    console.log(x + ", " + y);
 
     // |rotate 0180\n
     // |translate " + (e.pageX/xratio).toPrecision(3) + (e.pageY/yratio).toPrecision(3)+ "\n
-    port.write("|translate " + e.pageX.map(50, 50 + width, 0, realwidth).toPrecision(3) + e.pageY.map(50, 50 + height, realheight, 0).toPrecision(3) + "\n", function(err) {
+    port.write("|translate " + x + y + "\n", function(err) {
       if (err) {
         return console.log('Error on write: ', err.message);
       }
@@ -125,7 +143,7 @@ $('#chart').click(function(e) { //Default mouse Position
           console.log('Data:', data);
           split = data.split(" ", 3);
           // console.log(split);
-          draw(split[1], split[2]);
+          draw(parseFloat(split[1]), parseFloat(split[2]));
         }
         data = '';
       } else if (char == '') {
@@ -146,6 +164,8 @@ $('#chart').click(function(e) { //Default mouse Position
       y = 0;
     }
     $('#current-position').remove();
+    // console.log(x.map(0, realwidth, 50, 50 + width) + ", " + y.map(realheight, 0, 50, 50 + height));
+    // console.log(x * xratio + ", " + y * yratio);
     svg.append('circle')
       .attr("id", "current-position")
       .attr("stroke", "silver")
@@ -164,3 +184,28 @@ $('#chart').click(function(e) { //Default mouse Position
 Number.prototype.map = function(in_min, in_max, out_min, out_max) {
   return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
+
+var bool = 0;
+
+$('#plow').click(()=>{
+
+  if(bool == 0){
+    port.write("|plow up\n", function(err) {
+      if (err) {
+        return console.log('Error on write: ', err.message);
+      }
+      console.log('message written');
+    });
+    bool = 1;
+  }
+  else{
+    port.write("|plow down\n", function(err) {
+      if (err) {
+        return console.log('Error on write: ', err.message);
+      }
+      console.log('message written');
+    });
+    bool = 0;
+  }
+
+});
