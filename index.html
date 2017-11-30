@@ -5,33 +5,13 @@
   <meta charset="UTF-8">
   <title>Robot Tracking</title>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-
-  <style type="text/css">
-    #contact-list {
-      height: 150px;
-      overflow-y: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-  <div class="container">
-    <div id="location-list">
-      <table class="table-striped" id="location-table">
-        <thead>
-          <tr>
-            <th class="col-xs-4">X-Pos</th>
-            <th class="col-xs-6">Y-Pos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!--data goes here-->
-        </tbody>
-      </table>
-    </div>
-
-    <script src="./view.js"></script>
-  </div>
+  <div id="chart"></div>
+  <script type="text/jscript" src="chart.js"></script>
 </body>
+
 
 </html>
