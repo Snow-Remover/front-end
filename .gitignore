@@ -1,7 +1,8 @@
 # customer
+/build
 
 # package tool files
-node_modules
+/node_modules
 
 # Compiled source #
 ###################
