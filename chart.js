@@ -33,8 +33,8 @@ var svg = d3.select("#chart").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
 
-var realwidth = 2;
-var realheight = 1;
+var realwidth = 1.83;
+var realheight = 1.21;
 var xratio = width / realwidth;
 var yratio = height / realheight;
 
@@ -42,7 +42,7 @@ svg.append('circle')
   .attr("stroke", "red")
   .attr("stroke-width", "2")
   .attr("fill", "orange")
-  .attr("r", 10)
+  .attr("r", 20)
   .attr("cx", 50)
   .attr("cy", 50);
 
@@ -51,7 +51,7 @@ svg.append('circle')
   .attr("stroke", "red")
   .attr("stroke-width", "2")
   .attr("fill", "orange")
-  .attr("r", 10)
+  .attr("r", 20)
   .attr("cx", 50 + width)
   .attr("cy", 50);
 
@@ -59,7 +59,7 @@ svg.append('circle')
   .attr("stroke", "red")
   .attr("stroke-width", "2")
   .attr("fill", "orange")
-  .attr("r", 10)
+  .attr("r", 20)
   .attr("cx", 50)
   .attr("cy", 50 + height);
 
@@ -67,7 +67,7 @@ svg.append('circle')
   .attr("stroke", "red")
   .attr("stroke-width", "2")
   .attr("fill", "orange")
-  .attr("r", 10)
+  .attr("r", 20)
   .attr("cx", 50 + width)
   .attr("cy", 50 + height);
 
@@ -81,12 +81,12 @@ $('#chart').click(function(e) { //Default mouse Position
       .attr("id", "moveto")
       .attr("stroke", "red")
       .attr("fill", "red")
-      .attr("r", 20)
+      .attr("r", 30)
       .attr("cx", e.pageX)
       .attr("cy", e.pageY);
 
     // console.log((e.pageX/xratio).toPrecision(3));
-    console.log(e.pageX + ", " + e.pageY);
+    // console.log(e.pageX + ", " + e.pageY);
     // console.log(e.pageX.map(50, 50 + width, 0, realwidth).toPrecision(3) + ", " + e.pageY.map(50, 50 + height, realheight, 0).toPrecision(3));
 
     let x = e.pageX.map(50, 50 + width, 0, realwidth);
@@ -103,7 +103,7 @@ $('#chart').click(function(e) { //Default mouse Position
       y = y.toPrecision(3);
     }
 
-    console.log(x + ", " + y);
+    console.log("MOVING TO: " + x + ", " + y);
 
     // |rotate 0180\n
     // |translate " + (e.pageX/xratio).toPrecision(3) + (e.pageY/yratio).toPrecision(3)+ "\n
@@ -170,7 +170,7 @@ $('#chart').click(function(e) { //Default mouse Position
       .attr("id", "current-position")
       .attr("stroke", "silver")
       .attr("fill", "silver")
-      .attr("r", 20)
+      .attr("r", 30)
       .attr("cx", x.map(0, realwidth, 50, 50 + width))
       .attr("cy", y.map(realheight, 0, 50, 50 + height));
   }
